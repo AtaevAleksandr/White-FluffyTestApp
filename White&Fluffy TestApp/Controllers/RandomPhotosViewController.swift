@@ -14,6 +14,9 @@ class RandomPhotosViewController: UIViewController {
 
     private var photos = [UnsplashPhoto]()
 
+    private let itemsPerRow: CGFloat = 2
+    private let sectionInserts = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +41,12 @@ class RandomPhotosViewController: UIViewController {
     private lazy var photosCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 2
-        layout.minimumInteritemSpacing = 2
-        layout.estimatedItemSize = .zero
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: Cells.collectionViewCell)
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +84,6 @@ class RandomPhotosViewController: UIViewController {
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
     }
@@ -95,16 +96,23 @@ extension RandomPhotosViewController: UICollectionViewDelegate, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let screenWidth = UIScreen.main.bounds.width
-        let itemWidth = (screenWidth - 5) / 2
-        let itemHeight = itemWidth
-        return CGSize(width: itemWidth, height: itemHeight)
+
+        let photo = photos[indexPath.item]
+        let paddingSpace = sectionInserts.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        let height = CGFloat(photo.height) * widthPerItem / CGFloat(photo.width)
+        return CGSize(width: widthPerItem, height: height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        sectionInserts
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.collectionViewCell, for: indexPath) as! PhotosCollectionViewCell
         let unsplashPhoto = photos[indexPath.item]
-        cell
+        cell.unsplashPhoto = unsplashPhoto
         return cell
     }
 
@@ -118,10 +126,12 @@ extension RandomPhotosViewController: UICollectionViewDelegate, UICollectionView
 
 extension RandomPhotosViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        timer.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
             self.networkDataFetcher.fetchImages(searchTerm: searchText) { [weak self] searchResults in
                 guard let fetchedPhotos = searchResults else { return }
                 self?.photos = fetchedPhotos.results
+                self?.photosCollectionView.reloadData()
             }
         })
     }

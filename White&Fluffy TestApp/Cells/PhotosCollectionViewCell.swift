@@ -6,19 +6,25 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PhotosCollectionViewCell: UICollectionViewCell {
 
     var unsplashPhoto: UnsplashPhoto! {
         didSet {
             let photoUrl = unsplashPhoto.urls["regular"]
+            guard let imageUrl = photoUrl, let url = URL(string: imageUrl) else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.imageView.sd_setImage(with: url)
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+            }
         }
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(imageView)
-        imageView.addSubview(activityIndicator)
+        addSubviews()
         setConstraints()
     }
 
@@ -35,10 +41,9 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.tintColor = .systemGray
-        image.contentMode = .scaleAspectFill
-        image.clipsToBounds = true
-        //        image.layer.borderColor = UIColor.systemPink.cgColor
-        //        image.layer.borderWidth = 1
+        image.layer.cornerRadius = 10
+        image.contentMode = .scaleAspectFit
+        image.layer.masksToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         self.activityIndicator.startAnimating()
         return image
@@ -52,6 +57,11 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }()
 
     //MARK: - Methods
+    private func addSubviews() {
+        addSubview(imageView)
+        imageView.addSubview(activityIndicator)
+    }
+
     private func setConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
@@ -63,13 +73,4 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             activityIndicator.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
         ])
     }
-
-    func set() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.imageView.image = UIImage(systemName: "photo")
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.isHidden = true
-        }
-    }
-
 }
