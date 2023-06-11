@@ -9,21 +9,37 @@
 /* Begin PBXBuildFile section */
 		5BC506C52A360CED00F07A7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506C42A360CED00F07A7F /* AppDelegate.swift */; };
 		5BC506C72A360CED00F07A7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506C62A360CED00F07A7F /* SceneDelegate.swift */; };
-		5BC506C92A360CED00F07A7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506C82A360CED00F07A7F /* ViewController.swift */; };
-		5BC506CC2A360CED00F07A7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC506CA2A360CED00F07A7F /* Main.storyboard */; };
+		5BC506C92A360CED00F07A7F /* RandomPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506C82A360CED00F07A7F /* RandomPhotosViewController.swift */; };
 		5BC506CE2A360CEE00F07A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BC506CD2A360CEE00F07A7F /* Assets.xcassets */; };
 		5BC506D12A360CEE00F07A7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC506CF2A360CEE00F07A7F /* LaunchScreen.storyboard */; };
+		5BC506DC2A360E6300F07A7F /* Extension + ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506DB2A360E6300F07A7F /* Extension + ViewController.swift */; };
+		5BC506DE2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506DD2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift */; };
+		5BC506E32A362A3000F07A7F /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506E22A362A3000F07A7F /* PhotosCollectionViewCell.swift */; };
+		5BC506E52A362A5600F07A7F /* ListPhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506E42A362A5600F07A7F /* ListPhotosTableViewCell.swift */; };
+		5BC506E82A362A9100F07A7F /* CellsID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506E72A362A9100F07A7F /* CellsID.swift */; };
+		5BC506EA2A36340700F07A7F /* DetailPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506E92A36340700F07A7F /* DetailPhotoViewController.swift */; };
+		5BC506ED2A36652600F07A7F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506EC2A36652600F07A7F /* NetworkService.swift */; };
+		5BC506EF2A366DB200F07A7F /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506EE2A366DB200F07A7F /* NetworkDataFetcher.swift */; };
+		5BC506F12A366DFE00F07A7F /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506F02A366DFE00F07A7F /* SearchResults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5BC506C12A360CED00F07A7F /* White&Fluffy TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "White&Fluffy TestApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BC506C42A360CED00F07A7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BC506C62A360CED00F07A7F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5BC506C82A360CED00F07A7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5BC506CB2A360CED00F07A7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5BC506C82A360CED00F07A7F /* RandomPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotosViewController.swift; sourceTree = "<group>"; };
 		5BC506CD2A360CEE00F07A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BC506D02A360CEE00F07A7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BC506D22A360CEE00F07A7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BC506DB2A360E6300F07A7F /* Extension + ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + ViewController.swift"; sourceTree = "<group>"; };
+		5BC506DD2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfFavoritePhotosViewController.swift; sourceTree = "<group>"; };
+		5BC506E22A362A3000F07A7F /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		5BC506E42A362A5600F07A7F /* ListPhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosTableViewCell.swift; sourceTree = "<group>"; };
+		5BC506E72A362A9100F07A7F /* CellsID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsID.swift; sourceTree = "<group>"; };
+		5BC506E92A36340700F07A7F /* DetailPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoViewController.swift; sourceTree = "<group>"; };
+		5BC506EC2A36652600F07A7F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		5BC506EE2A366DB200F07A7F /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
+		5BC506F02A366DFE00F07A7F /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +72,71 @@
 		5BC506C32A360CED00F07A7F /* White&Fluffy TestApp */ = {
 			isa = PBXGroup;
 			children = (
-				5BC506C42A360CED00F07A7F /* AppDelegate.swift */,
-				5BC506C62A360CED00F07A7F /* SceneDelegate.swift */,
-				5BC506C82A360CED00F07A7F /* ViewController.swift */,
-				5BC506CA2A360CED00F07A7F /* Main.storyboard */,
+				5BC506EB2A36651000F07A7F /* Service */,
+				5BC506D82A360D3500F07A7F /* App */,
+				5BC506D92A360D4C00F07A7F /* Controllers */,
+				5BC506E62A362A7A00F07A7F /* Model */,
+				5BC506E12A3629F300F07A7F /* Cells */,
+				5BC506DA2A360E3800F07A7F /* Extensions */,
 				5BC506CD2A360CEE00F07A7F /* Assets.xcassets */,
-				5BC506CF2A360CEE00F07A7F /* LaunchScreen.storyboard */,
 				5BC506D22A360CEE00F07A7F /* Info.plist */,
 			);
 			path = "White&Fluffy TestApp";
+			sourceTree = "<group>";
+		};
+		5BC506D82A360D3500F07A7F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5BC506C42A360CED00F07A7F /* AppDelegate.swift */,
+				5BC506C62A360CED00F07A7F /* SceneDelegate.swift */,
+				5BC506CF2A360CEE00F07A7F /* LaunchScreen.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5BC506D92A360D4C00F07A7F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5BC506C82A360CED00F07A7F /* RandomPhotosViewController.swift */,
+				5BC506DD2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift */,
+				5BC506E92A36340700F07A7F /* DetailPhotoViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5BC506DA2A360E3800F07A7F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5BC506DB2A360E6300F07A7F /* Extension + ViewController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5BC506E12A3629F300F07A7F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5BC506E22A362A3000F07A7F /* PhotosCollectionViewCell.swift */,
+				5BC506E42A362A5600F07A7F /* ListPhotosTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5BC506E62A362A7A00F07A7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5BC506E72A362A9100F07A7F /* CellsID.swift */,
+				5BC506F02A366DFE00F07A7F /* SearchResults.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5BC506EB2A36651000F07A7F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5BC506EC2A36652600F07A7F /* NetworkService.swift */,
+				5BC506EE2A366DB200F07A7F /* NetworkDataFetcher.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +199,6 @@
 			files = (
 				5BC506D12A360CEE00F07A7F /* LaunchScreen.storyboard in Resources */,
 				5BC506CE2A360CEE00F07A7F /* Assets.xcassets in Resources */,
-				5BC506CC2A360CED00F07A7F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +209,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BC506C92A360CED00F07A7F /* ViewController.swift in Sources */,
+				5BC506ED2A36652600F07A7F /* NetworkService.swift in Sources */,
+				5BC506E82A362A9100F07A7F /* CellsID.swift in Sources */,
+				5BC506DC2A360E6300F07A7F /* Extension + ViewController.swift in Sources */,
+				5BC506EF2A366DB200F07A7F /* NetworkDataFetcher.swift in Sources */,
+				5BC506DE2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift in Sources */,
+				5BC506E52A362A5600F07A7F /* ListPhotosTableViewCell.swift in Sources */,
+				5BC506C92A360CED00F07A7F /* RandomPhotosViewController.swift in Sources */,
 				5BC506C52A360CED00F07A7F /* AppDelegate.swift in Sources */,
+				5BC506EA2A36340700F07A7F /* DetailPhotoViewController.swift in Sources */,
 				5BC506C72A360CED00F07A7F /* SceneDelegate.swift in Sources */,
+				5BC506F12A366DFE00F07A7F /* SearchResults.swift in Sources */,
+				5BC506E32A362A3000F07A7F /* PhotosCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5BC506CA2A360CED00F07A7F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5BC506CB2A360CED00F07A7F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5BC506CF2A360CEE00F07A7F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,9 +364,9 @@
 				INFOPLIST_FILE = "White&Fluffy TestApp/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,6 +374,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ataev-Aleksandr.White-Fluffy-TestApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -320,9 +395,9 @@
 				INFOPLIST_FILE = "White&Fluffy TestApp/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,6 +405,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ataev-Aleksandr.White-Fluffy-TestApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
