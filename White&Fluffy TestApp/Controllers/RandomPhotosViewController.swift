@@ -12,6 +12,8 @@ class RandomPhotosViewController: UIViewController {
     var networkDataFetcher = NetworkDataFetcher()
     private var timer = Timer()
 
+    private var photos = [UnsplashPhoto]()
+
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +91,7 @@ class RandomPhotosViewController: UIViewController {
 //MARK: - Extensions
 extension RandomPhotosViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        30
+        photos.count
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -101,7 +103,8 @@ extension RandomPhotosViewController: UICollectionViewDelegate, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.collectionViewCell, for: indexPath) as! PhotosCollectionViewCell
-        cell.set()
+        let unsplashPhoto = photos[indexPath.item]
+        cell
         return cell
     }
 
@@ -116,10 +119,9 @@ extension RandomPhotosViewController: UICollectionViewDelegate, UICollectionView
 extension RandomPhotosViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            self.networkDataFetcher.fetchImages(searchTerm: searchText) { searchResults in
-                searchResults?.results.map { photo in
-                    print(photo.urls["small"])
-                }
+            self.networkDataFetcher.fetchImages(searchTerm: searchText) { [weak self] searchResults in
+                guard let fetchedPhotos = searchResults else { return }
+                self?.photos = fetchedPhotos.results
             }
         })
     }

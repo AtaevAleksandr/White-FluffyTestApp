@@ -9,11 +9,22 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
 
+    var unsplashPhoto: UnsplashPhoto! {
+        didSet {
+            let photoUrl = unsplashPhoto.urls["regular"]
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(imageView)
         imageView.addSubview(activityIndicator)
         setConstraints()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
     }
 
     required init?(coder: NSCoder) {
@@ -24,10 +35,10 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.tintColor = .systemGray
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
-        image.layer.borderColor = UIColor.systemPink.cgColor
-        image.layer.borderWidth = 1
+        //        image.layer.borderColor = UIColor.systemPink.cgColor
+        //        image.layer.borderWidth = 1
         image.translatesAutoresizingMaskIntoConstraints = false
         self.activityIndicator.startAnimating()
         return image
