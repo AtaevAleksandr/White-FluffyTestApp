@@ -9,5 +9,5 @@ import Foundation
 
 struct Cells {
     static let collectionViewCell = "PhotosCollectionViewCell"
-    static let tableViewCell = "ListPhotosTableViewCell"
+    static let tableViewCell = "FavoritePhotosTableViewCell"
 }

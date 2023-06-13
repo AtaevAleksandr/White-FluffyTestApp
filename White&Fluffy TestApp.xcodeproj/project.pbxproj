@@ -23,6 +23,7 @@
 		5BC506F12A366DFE00F07A7F /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506F02A366DFE00F07A7F /* SearchResults.swift */; };
 		5BC506F42A367F5400F07A7F /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5BC506F32A367F5400F07A7F /* SDWebImage */; };
 		5BC506F62A367F5400F07A7F /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5BC506F52A367F5400F07A7F /* SDWebImageMapKit */; };
+		5BC80C782A3917DC0000412E /* Extension + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC80C772A3917DC0000412E /* Extension + UIImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		5BC506EC2A36652600F07A7F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5BC506EE2A366DB200F07A7F /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		5BC506F02A366DFE00F07A7F /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		5BC80C772A3917DC0000412E /* Extension + UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				5BC506DB2A360E6300F07A7F /* Extension + ViewController.swift */,
+				5BC80C772A3917DC0000412E /* Extension + UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				5BC506EF2A366DB200F07A7F /* NetworkDataFetcher.swift in Sources */,
 				5BC506DE2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift in Sources */,
 				5BC506E52A362A5600F07A7F /* FavoritePhotosTableViewCell.swift in Sources */,
+				5BC80C782A3917DC0000412E /* Extension + UIImage.swift in Sources */,
 				5BC506C92A360CED00F07A7F /* SearchPhotosViewController.swift in Sources */,
 				5BC506C52A360CED00F07A7F /* AppDelegate.swift in Sources */,
 				5BC506EA2A36340700F07A7F /* DetailPhotoViewController.swift in Sources */,

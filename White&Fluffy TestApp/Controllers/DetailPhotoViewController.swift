@@ -46,7 +46,6 @@ class DetailPhotoViewController: UIViewController {
     //MARK: - Clousers
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "photo")
         imageView.tintColor = .systemGray2
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -57,6 +56,7 @@ class DetailPhotoViewController: UIViewController {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 26, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -106,9 +106,30 @@ class DetailPhotoViewController: UIViewController {
         return button
     }()
 
+    private lazy var heartButton: UIButton = {
+        let button = UIButton()
+        button.configuration = .filled()
+        button.configuration?.image = UIImage(systemName: "heart.fill")
+        button.configuration?.baseForegroundColor = .systemPink
+        button.configuration?.baseBackgroundColor = .clear
+        button.addTarget(self, action: #selector(likeOrDislike), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        let barButton = UIBarButtonItem(customView: button)
+        return button
+    }()
+
+    public lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .systemPink
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+
     //MARK: - Methods
     private func addSubviews() {
         [imageView, nameLabel, createdAtLabel, locationLabel, locationImageView, downloadsLabel, addToFavoriteButton].forEach { view.addSubview($0) }
+        imageView.addSubview(activityIndicator)
     }
     private func setConstraints() {
         NSLayoutConstraint.activate([
@@ -128,14 +149,18 @@ class DetailPhotoViewController: UIViewController {
 
             nameLabel.topAnchor.constraint(equalTo: locationImageView.bottomAnchor, constant: 12),
             nameLabel.leadingAnchor.constraint(equalTo: locationImageView.leadingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: createdAtLabel.trailingAnchor),
 
             downloadsLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 6),
             downloadsLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
 
             addToFavoriteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addToFavoriteButton.heightAnchor.constraint(equalToConstant: 50),
-            addToFavoriteButton.widthAnchor.constraint(equalToConstant: 200),
-            addToFavoriteButton.topAnchor.constraint(equalTo: downloadsLabel.bottomAnchor, constant: 100)
+            addToFavoriteButton.widthAnchor.constraint(equalToConstant: 250),
+            addToFavoriteButton.topAnchor.constraint(equalTo: downloadsLabel.bottomAnchor, constant: 100),
+
+            activityIndicator.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
         ])
     }
 
@@ -148,6 +173,8 @@ class DetailPhotoViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: heartButton)
     }
 
     @objc func likeOrDislike() {
@@ -155,6 +182,7 @@ class DetailPhotoViewController: UIViewController {
             let alert = UIAlertController(title: "Attention!", message: "Do you want to remove this photo from favorites?", preferredStyle: .alert)
             let yesAction = UIAlertAction(title: "Yes", style: .default) {_ in
                 self.isFavourite = false
+                self.buttonsChange(isFavorite: self.isFavourite)
                 for index in 0..<FavoritesPhotos.favorites.count {
                     if FavoritesPhotos.favorites[index].id == self.detailedImage!.id {
                         FavoritesPhotos.favorites.remove(at: index)
@@ -169,15 +197,25 @@ class DetailPhotoViewController: UIViewController {
             present(alert, animated: true)
         } else {
             isFavourite = true
+            buttonsChange(isFavorite: isFavourite)
             FavoritesPhotos.favorites.append(detailedImage!)
             self.delegate?.didChangeFavouritesList()
         }
     }
 
-    private func buttonChange(isFavorite: Bool) {
+    private func buttonsChange(isFavorite: Bool) {
         if isFavourite {
-            addToFavoriteButton.setTitle("Remove from favorites 💔", for: .normal)
+            addToFavoriteButton.configuration?.title = "Remove from favorites 💔"
             addToFavoriteButton.configuration?.baseBackgroundColor = .systemPurple
+            let image = UIImage(systemName: "heart.slash.fill")
+            heartButton.configuration?.image = image
+            heartButton.configuration?.baseForegroundColor = .purple
+        } else {
+            addToFavoriteButton.configuration?.title = "Add to favorites ❤️"
+            addToFavoriteButton.configuration?.baseBackgroundColor = .systemBlue
+            let image = UIImage(systemName: "heart.fill")
+            heartButton.configuration?.image = image
+            heartButton.configuration?.baseForegroundColor = .systemPink
         }
     }
 
@@ -209,7 +247,17 @@ class DetailPhotoViewController: UIViewController {
         guard let detailedImage = detailedImage else { return }
         let imageUrl = detailedImage.urls["regular"]
         guard let imageUrl = imageUrl, let url = URL(string: imageUrl) else { return }
-        imageView.sd_setImage(with: url)
+        self.activityIndicator.startAnimating()
+        self.activityIndicator.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.imageView.sd_setImage(with: url) { [weak self] (image, error, _, _) in
+                self?.activityIndicator.stopAnimating()
+                self?.activityIndicator.isHidden = true
+                if let error = error {
+                    print("Image loading error: \(error.localizedDescription)")
+                }
+            }
+        }
         nameLabel.text = detailedImage.user.name
         locationLabel.text = "\(detailedImage.location?.city ?? "Unknown city"), \(detailedImage.location?.country ?? "Unknown country")"
         downloadsLabel.text = "Downloads count: \(detailedImage.downloads)"
@@ -217,7 +265,7 @@ class DetailPhotoViewController: UIViewController {
         for image in FavoritesPhotos.favorites {
             if image.id == detailedImage.id {
                 isFavourite = true
-                buttonChange(isFavorite: isFavourite)
+                buttonsChange(isFavorite: isFavourite)
             }
         }
     }

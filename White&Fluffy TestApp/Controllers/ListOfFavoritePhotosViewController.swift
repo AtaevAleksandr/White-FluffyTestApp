@@ -67,30 +67,43 @@ class ListOfFavoritePhotosViewController: UIViewController {
     }
 }
 
+//MARK: - Extension
 extension ListOfFavoritePhotosViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        FavoritesPhotos.favorites.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.tableViewCell, for: indexPath) as! FavoritePhotosTableViewCell
+        let favoritePhotos = FavoritesPhotos.favorites[indexPath.item]
+        cell.favoritePhotos = favoritePhotos
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let detailedPhoto = FavoritesPhotos.favorites[indexPath.item]
         let vc = DetailPhotoViewController()
+        vc.detailedImage = detailedPhoto
+        vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        50
+        110
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            FavoritesPhotos.favorites.remove(at: indexPath.item)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+}
+
+extension ListOfFavoritePhotosViewController: DetailPhotoDelegateProtocol {
+    func didChangeFavouritesList() {
+        tableView.reloadData()
     }
 }
