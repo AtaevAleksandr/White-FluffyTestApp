@@ -1,5 +1,5 @@
 //
-//  RandomPhotosViewController.swift
+//  SearchPhotosViewController.swift
 //  White&Fluffy TestApp
 //
 //  Created by Aleksandr Ataev on 11.06.2023.
@@ -7,13 +7,12 @@
 
 import UIKit
 
-class RandomPhotosViewController: UIViewController {
+class SearchPhotosViewController: UIViewController {
 
-    var networkDataFetcher = NetworkDataFetcher()
+    private var networkDataFetcher = NetworkDataFetcher()
     private var timer = Timer()
-
     private var photos = [UnsplashPhoto]()
-
+    private var randomPhotos = [UnsplashPhoto]()
     private let itemsPerRow: CGFloat = 2
     private let sectionInserts = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
@@ -24,12 +23,12 @@ class RandomPhotosViewController: UIViewController {
         view.addSubview(photosCollectionView)
         setConstraints()
         setSearchBar()
+        setupRandomPhotos()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createBarsItems()
-        photosCollectionView.reloadData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,7 +44,6 @@ class RandomPhotosViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: Cells.collectionViewCell)
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -54,12 +52,23 @@ class RandomPhotosViewController: UIViewController {
     }()
 
     //MARK: - Methods
+    private func setupRandomPhotos() {
+        self.networkDataFetcher.fetchRandomImages { [weak self] randomResults in
+            guard let fetchedPhotos = randomResults else { return }
+            DispatchQueue.main.async {
+                self?.randomPhotos = fetchedPhotos
+                self?.photos = fetchedPhotos
+                self?.photosCollectionView.reloadData()
+            }
+        }
+    }
+
     private func setConstraints() {
         NSLayoutConstraint.activate([
             photosCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             photosCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             photosCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            photosCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            photosCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
@@ -90,13 +99,12 @@ class RandomPhotosViewController: UIViewController {
 }
 
 //MARK: - Extensions
-extension RandomPhotosViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SearchPhotosViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         photos.count
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         let photo = photos[indexPath.item]
         let paddingSpace = sectionInserts.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
@@ -117,23 +125,37 @@ extension RandomPhotosViewController: UICollectionViewDelegate, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+        let photo = photos[indexPath.item]
+        let id = photo.id
         let vc = DetailPhotoViewController()
+        vc.networkDataFetcher = networkDataFetcher
+        vc.id = id
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true)
     }
 }
 
-extension RandomPhotosViewController: UISearchBarDelegate {
+extension SearchPhotosViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            self.networkDataFetcher.fetchImages(searchTerm: searchText) { [weak self] searchResults in
-                guard let fetchedPhotos = searchResults else { return }
-                self?.photos = fetchedPhotos.results
-                self?.photosCollectionView.reloadData()
+            if searchText.count == 0 || searchText == " " {
+                self.photos = self.randomPhotos
+                self.photosCollectionView.reloadData()
+            } else {
+                self.networkDataFetcher.fetchImages(searchTerm: searchText) { [weak self] searchResults in
+                    guard let fetchedPhotos = searchResults else { return }
+                    self?.photos = fetchedPhotos.results
+                    self?.photosCollectionView.reloadData()
+                }
             }
         })
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        photos = randomPhotos
+        photosCollectionView.reloadData()
     }
 }
 

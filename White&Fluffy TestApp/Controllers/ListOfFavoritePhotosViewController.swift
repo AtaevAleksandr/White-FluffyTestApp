@@ -34,7 +34,7 @@ class ListOfFavoritePhotosViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(ListPhotosTableViewCell.self, forCellReuseIdentifier: Cells.tableViewCell)
+        tableView.register(FavoritePhotosTableViewCell.self, forCellReuseIdentifier: Cells.tableViewCell)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -73,7 +73,7 @@ extension ListOfFavoritePhotosViewController: UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.tableViewCell, for: indexPath) as! ListPhotosTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.tableViewCell, for: indexPath) as! FavoritePhotosTableViewCell
         return cell
     }
 

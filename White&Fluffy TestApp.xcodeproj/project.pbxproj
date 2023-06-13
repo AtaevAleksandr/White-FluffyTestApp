@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		5BC506C52A360CED00F07A7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506C42A360CED00F07A7F /* AppDelegate.swift */; };
 		5BC506C72A360CED00F07A7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506C62A360CED00F07A7F /* SceneDelegate.swift */; };
-		5BC506C92A360CED00F07A7F /* RandomPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506C82A360CED00F07A7F /* RandomPhotosViewController.swift */; };
+		5BC506C92A360CED00F07A7F /* SearchPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506C82A360CED00F07A7F /* SearchPhotosViewController.swift */; };
 		5BC506CE2A360CEE00F07A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BC506CD2A360CEE00F07A7F /* Assets.xcassets */; };
 		5BC506D12A360CEE00F07A7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC506CF2A360CEE00F07A7F /* LaunchScreen.storyboard */; };
 		5BC506DC2A360E6300F07A7F /* Extension + ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506DB2A360E6300F07A7F /* Extension + ViewController.swift */; };
 		5BC506DE2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506DD2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift */; };
 		5BC506E32A362A3000F07A7F /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506E22A362A3000F07A7F /* PhotosCollectionViewCell.swift */; };
-		5BC506E52A362A5600F07A7F /* ListPhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506E42A362A5600F07A7F /* ListPhotosTableViewCell.swift */; };
+		5BC506E52A362A5600F07A7F /* FavoritePhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506E42A362A5600F07A7F /* FavoritePhotosTableViewCell.swift */; };
 		5BC506E82A362A9100F07A7F /* CellsID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506E72A362A9100F07A7F /* CellsID.swift */; };
 		5BC506EA2A36340700F07A7F /* DetailPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506E92A36340700F07A7F /* DetailPhotoViewController.swift */; };
 		5BC506ED2A36652600F07A7F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC506EC2A36652600F07A7F /* NetworkService.swift */; };
@@ -29,14 +29,14 @@
 		5BC506C12A360CED00F07A7F /* White&Fluffy TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "White&Fluffy TestApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BC506C42A360CED00F07A7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BC506C62A360CED00F07A7F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5BC506C82A360CED00F07A7F /* RandomPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotosViewController.swift; sourceTree = "<group>"; };
+		5BC506C82A360CED00F07A7F /* SearchPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosViewController.swift; sourceTree = "<group>"; };
 		5BC506CD2A360CEE00F07A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BC506D02A360CEE00F07A7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BC506D22A360CEE00F07A7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BC506DB2A360E6300F07A7F /* Extension + ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + ViewController.swift"; sourceTree = "<group>"; };
 		5BC506DD2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfFavoritePhotosViewController.swift; sourceTree = "<group>"; };
 		5BC506E22A362A3000F07A7F /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
-		5BC506E42A362A5600F07A7F /* ListPhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosTableViewCell.swift; sourceTree = "<group>"; };
+		5BC506E42A362A5600F07A7F /* FavoritePhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosTableViewCell.swift; sourceTree = "<group>"; };
 		5BC506E72A362A9100F07A7F /* CellsID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsID.swift; sourceTree = "<group>"; };
 		5BC506E92A36340700F07A7F /* DetailPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoViewController.swift; sourceTree = "<group>"; };
 		5BC506EC2A36652600F07A7F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		5BC506D92A360D4C00F07A7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5BC506C82A360CED00F07A7F /* RandomPhotosViewController.swift */,
+				5BC506C82A360CED00F07A7F /* SearchPhotosViewController.swift */,
 				5BC506DD2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift */,
 				5BC506E92A36340700F07A7F /* DetailPhotoViewController.swift */,
 			);
@@ -120,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				5BC506E22A362A3000F07A7F /* PhotosCollectionViewCell.swift */,
-				5BC506E42A362A5600F07A7F /* ListPhotosTableViewCell.swift */,
+				5BC506E42A362A5600F07A7F /* FavoritePhotosTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -225,8 +225,8 @@
 				5BC506DC2A360E6300F07A7F /* Extension + ViewController.swift in Sources */,
 				5BC506EF2A366DB200F07A7F /* NetworkDataFetcher.swift in Sources */,
 				5BC506DE2A3610C400F07A7F /* ListOfFavoritePhotosViewController.swift in Sources */,
-				5BC506E52A362A5600F07A7F /* ListPhotosTableViewCell.swift in Sources */,
-				5BC506C92A360CED00F07A7F /* RandomPhotosViewController.swift in Sources */,
+				5BC506E52A362A5600F07A7F /* FavoritePhotosTableViewCell.swift in Sources */,
+				5BC506C92A360CED00F07A7F /* SearchPhotosViewController.swift in Sources */,
 				5BC506C52A360CED00F07A7F /* AppDelegate.swift in Sources */,
 				5BC506EA2A36340700F07A7F /* DetailPhotoViewController.swift in Sources */,
 				5BC506C72A360CED00F07A7F /* SceneDelegate.swift in Sources */,

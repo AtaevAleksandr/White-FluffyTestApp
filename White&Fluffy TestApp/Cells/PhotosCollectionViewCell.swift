@@ -14,10 +14,16 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         didSet {
             let photoUrl = unsplashPhoto.urls["regular"]
             guard let imageUrl = photoUrl, let url = URL(string: imageUrl) else { return }
+            self.activityIndicator.startAnimating()
+            self.activityIndicator.isHidden = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.imageView.sd_setImage(with: url)
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.isHidden = true
+                self.imageView.sd_setImage(with: url) { [weak self] (image, error, _, _) in
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.isHidden = true
+                    if let error = error {
+                        print("Image loading error: \(error.localizedDescription)")
+                    }
+                }
             }
         }
     }
@@ -40,16 +46,14 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     //MARK: - Clousers
     lazy var imageView: UIImageView = {
         let image = UIImageView()
-        image.tintColor = .systemGray
         image.layer.cornerRadius = 10
         image.contentMode = .scaleAspectFit
         image.layer.masksToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
-        self.activityIndicator.startAnimating()
         return image
     }()
 
-    public lazy var activityIndicator: UIActivityIndicatorView = {
+    private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.color = .systemPink
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false

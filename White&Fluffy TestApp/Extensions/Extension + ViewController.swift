@@ -11,7 +11,7 @@ import UIKit
 extension SceneDelegate {
 
     private func createFirstController() -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: RandomPhotosViewController())
+        let navigationController = UINavigationController(rootViewController: SearchPhotosViewController())
         navigationController.tabBarItem = UITabBarItem(title: "Random photos", image: UIImage(systemName: "photo.on.rectangle.angled"), tag: 0)
         return navigationController
     }
